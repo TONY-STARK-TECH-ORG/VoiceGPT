@@ -58,7 +58,7 @@ async def entrypoint(ctx: JobContext):
     )
 
     openai_tts = tts.StreamAdapter(
-        tts=openai.TTS(voice="alloy"),
+        tts=openai.TTS(voice="shimmer"),
         sentence_tokenizer=tokenize.basic.SentenceTokenizer(),
     )
 
