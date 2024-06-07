@@ -39,6 +39,7 @@ WORKDIR /home/appuser
 COPY requirements.txt .
 RUN python -m pip install --upgrade Pillow
 RUN python -m pip install --upgrade defusedxml olefile
+RUN python -m pip install --upgrade openai
 RUN python -m pip install --user --no-cache-dir -r requirements.txt
 
 COPY . .
