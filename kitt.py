@@ -12,17 +12,12 @@ from livekit.agents.llm import (
     ChatRole,
 )
 from livekit.agents.voice_assistant import AssistantContext, VoiceAssistant
-from livekit.plugins import openai, silero
 
-import os
+import openaipg, silero
+
 import requests
 
 MAX_IMAGES = 3
-
-os.environ['LIVEKIT_URL'] = 'wss://jarvis.fastx-ai.com';
-os.environ['LIVEKIT_API_KEY'] = 'APIhyo7GHVmnrfG';
-os.environ['LIVEKIT_API_SECRET'] = 'mMo5VmcQZIidwTfLi4YxPeGotYZ2JQvUnYusHlk97dV';
-os.environ['OPENAI_API_KEY'] = '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';
 
 class AssistantFnc(agents.llm.FunctionContext):
     @agents.llm.ai_callable(
@@ -53,17 +48,17 @@ async def entrypoint(ctx: JobContext):
         ]
     )
 
-    gpt = openai.LLM(
+    gpt = openaipg.LLM(
         model="gpt-4o",
     )
 
     openai_tts = tts.StreamAdapter(
-        tts=openai.TTS(voice="shimmer"),
+        tts=openaipg.TTS(voice="nova"),
         sentence_tokenizer=tokenize.basic.SentenceTokenizer(),
     )
 
     whisper_stt = stt.StreamAdapter(
-        stt=openai.STT(detect_language=True),
+        stt=openaipg.STT(detect_language=True),
         vad=silero.VAD()
     )
 
