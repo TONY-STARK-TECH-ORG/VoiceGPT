@@ -39,7 +39,14 @@ WORKDIR /home/appuser
 COPY requirements.txt .
 RUN python -m pip install --upgrade Pillow
 RUN python -m pip install --upgrade defusedxml olefile
-RUN python -m pip install --upgrade openai
+RUN python -m pip install "torch <= 3",
+RUN python -m pip install "torchaudio >= 2",
+RUN python -m pip install "numpy <= 2",
+RUN python -m pip install "onnxruntime==1.17.0",
+RUN python -m pip install "openai == 1.30.0",
+RUN python -m pip install "pillow == 10.3.0",
+RUN python -m pip install "requests <= 3",
+
 RUN python -m pip install --user --no-cache-dir -r requirements.txt
 
 COPY . .
